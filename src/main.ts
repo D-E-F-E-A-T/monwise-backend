@@ -17,7 +17,6 @@ async function bootstrap() {
     .setTitle('Monwise Community')
     .setDescription('Monwise Community API Documentation')
     .setVersion('1.0')
-    .addTag('monwise')
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
