@@ -5,8 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 // import { AppService } from './app.service';
 import { TagsModule } from './tags/tags.module';
 import { ArticlesModule } from './articles/articles.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmConfig), TagsModule, ArticlesModule],
+  imports: [TypeOrmModule.forRoot(typeOrmConfig), TagsModule, ArticlesModule, CommentsModule],
 })
 export class AppModule {}

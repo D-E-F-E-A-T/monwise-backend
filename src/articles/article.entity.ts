@@ -6,9 +6,11 @@ import {
   UpdateDateColumn,
   Column,
   Index,
+  OneToMany,
 } from 'typeorm';
 import { IsInt, IsDate, Min, Max, IsBoolean } from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger';
+import { Comment } from '../comments/comment.entity';
 
 @Entity()
 export class Article extends BaseEntity {
@@ -19,7 +21,7 @@ export class Article extends BaseEntity {
   @Column()
   title: string;
 
-  @Column()
+  @Column({ nullable: true })
   abuseRemovalReason: string;
 
   @Column({ default: false })
@@ -33,7 +35,7 @@ export class Article extends BaseEntity {
   bodyHtml: string;
 
   @ApiModelProperty()
-  @Column('text')
+  @Column({ type: 'text', nullable: true })
   bodyMarkdown: string;
 
   @ApiModelProperty()
@@ -46,8 +48,8 @@ export class Article extends BaseEntity {
   @Max(10)
   commentsCount: number;
 
-  @ApiModelProperty()
-  @Column()
+  @ApiModelProperty({ required: false })
+  @Column({ nullable: true })
   description: string;
 
   @Column({ default: false })
@@ -68,7 +70,7 @@ export class Article extends BaseEntity {
   lastCommentAt: Date;
 
   @ApiModelProperty()
-  @Column()
+  @Column({ nullable: false })
   mainImage: string;
 
   @ApiModelProperty()
@@ -85,8 +87,8 @@ export class Article extends BaseEntity {
   published: boolean;
 
   @Index('index_articles_on_published_at')
-  @Column()
   @IsDate()
+  @Column({ nullable: true })
   publishedAt: Date;
 
   @Column({ default: 0, nullable: false })
@@ -94,7 +96,7 @@ export class Article extends BaseEntity {
   reactionsCount: number;
 
   @Index('index_articles_on_slug')
-  @Column('text')
+  @Column({ nullable: true })
   slug: string;
 
   @ApiModelProperty()
@@ -107,6 +109,13 @@ export class Article extends BaseEntity {
   @CreateDateColumn()
   createdAt: Date;
 
+  @ApiModelProperty()
+  @Column('text')
+  tagList: string;
+
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(type => Comment, comment => comment.article, { eager: true })
+  comments: Comment[];
 }
