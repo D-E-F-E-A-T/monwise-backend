@@ -11,7 +11,7 @@ import { ApiUseTags } from '@nestjs/swagger';
   },
   params: {
     articleId: {
-      type: 'string',
+      type: 'uuid',
       field: 'articleId',
     },
   },

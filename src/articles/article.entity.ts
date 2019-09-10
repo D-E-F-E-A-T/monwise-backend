@@ -11,6 +11,7 @@ import {
 import { IsInt, IsDate, Min, Max, IsBoolean } from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger';
 import { Comment } from '../comments/comment.entity';
+import { Reaction } from '../reactions/reaction.entity';
 
 @Entity()
 export class Article extends BaseEntity {
@@ -118,4 +119,7 @@ export class Article extends BaseEntity {
 
   @OneToMany(type => Comment, comment => comment.article, { eager: true })
   comments: Comment[];
+
+  @OneToMany(type => Reaction, reaction => reaction.article, { eager: true })
+  reactions: Reaction[];
 }
