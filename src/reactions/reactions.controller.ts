@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Param, ParseUUIDPipe } from '@nestjs/common';
 import {
   Crud,
   CrudController,
@@ -21,6 +21,11 @@ import { ArticlesService } from '../articles/articles.service';
       type: 'uuid',
       field: 'articleId',
     },
+    id: {
+      type: 'uuid',
+      field: 'id',
+      primary: true,
+    },
   },
 })
 @ApiUseTags('reactions')
@@ -35,9 +40,11 @@ export class ReactionsController implements CrudController<Reaction> {
     return this;
   }
 
-  // @Override()
-  // createOne(@ParsedRequest() req: CrudRequest, @ParsedBody() dto: Reaction) {
-  // 	this.base.createOneBase(req, dto)
-  // 	return this.articleService.updateOne({}, model: Article)
-  // }
+  @Override()
+  createOne(
+    @ParsedRequest() req: CrudRequest,
+    @Param('articleId', ParseUUIDPipe) articleId: string,
+  ) {
+    return this.service.createReaction(articleId);
+  }
 }

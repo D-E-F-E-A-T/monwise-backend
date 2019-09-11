@@ -18,12 +18,20 @@ export class ArticlesService extends TypeOrmCrudService<Article> {
     return found;
   }
 
-  async updateCommentsCount(articleId: string): Promise<Article> {
+  async updateCommentsCount(articleId: string): Promise<void> {
     const article = await this.getArticleById(articleId);
     article.commentsCount += 1;
 
     await article.save();
+  }
 
-    return article;
+  async updateReactionsCount(articleId: string, value: number): Promise<void> {
+    const article = await this.getArticleById(articleId);
+    if (article.reactionsCount === 0 && value < 0) {
+      return;
+    }
+    article.reactionsCount = article.reactionsCount + value;
+
+    await article.save();
   }
 }

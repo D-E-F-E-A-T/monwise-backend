@@ -14,11 +14,14 @@ export class Reaction extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ default: 1 })
   reaction: number;
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @Column({ default: false })
+  isDeleted: boolean;
 
   @UpdateDateColumn()
   lastVoted: Date;

@@ -1,8 +1,6 @@
-# Monwise
+# [Monwise](https://monwise.com)
 
-## Description
-
-[Monwise](https://monwise.com) is a forum for all things finance. We like to think that two things make the world go round; Finance and Energy. No matter the form we humans rely on these daily in order to live and thrive.
+Forum for all things finance. We like to think that two things make the world go round; Finance and Energy. No matter the form we humans rely on these daily in order to live and thrive.
 
 Nonetheless our research shows that, the average person can get between 5 and 30% more value from their purchase of financial services if they had adequate information on the market. We too have been frustrated moving from company to company shopping for that best rate.
 
